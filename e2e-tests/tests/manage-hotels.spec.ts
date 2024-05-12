@@ -48,22 +48,26 @@ test("should allow user to add a hotel", async ({ page }) => {
   await expect(page.getByText("Hotel Saved!")).toBeVisible();
  });
 
-// test("should display hotels", async ({ page }) => {
-//   await page.goto(`${UI_URL}my-hotels`);
+test("should display hotels", async ({ page }) => {
+  await page.goto(`${UI_URL}my-hotels`);
 
-//   await expect(page.getByText("Dublin Getaways")).toBeVisible();
-//   await expect(page.getByText("Lorem ipsum dolor sit amet")).toBeVisible();
-//   await expect(page.getByText("Dublin, Ireland")).toBeVisible();
-//   await expect(page.getByText("All Inclusive")).toBeVisible();
-//   await expect(page.getByText("£119 per night")).toBeVisible();
-//   await expect(page.getByText("2 adults, 3 children")).toBeVisible();
-//   await expect(page.getByText("2 Star Rating")).toBeVisible();
+  await expect(page.getByText("Paradise Recidency")).toBeVisible();
+  await expect(
+    page.getByText(
+      "Welcome to Paradise Residency, Mumbai's urban haven offering modern comfort. Enjoy cozy rooms, delectable cuisine, and convenient access to city attractions. Your perfect stay awaits in the heart of Mumbai!"
+    )
+  ).toBeVisible();
+  await expect(page.getByText("Mumbai, India")).toBeVisible();
+  await expect(page.getByText("Family")).toBeVisible();
+  await expect(page.getByText("₹10000 per night")).toBeVisible();
+  await expect(page.getByText("2 adults, 1 children")).toBeVisible();
+  await expect(page.getByText("5 Star Rating")).toBeVisible();
 
-//   await expect(
-//     page.getByRole("link", { name: "View Details" }).first()
-//   ).toBeVisible();
-//   await expect(page.getByRole("link", { name: "Add Hotel" })).toBeVisible();
-// });
+  await expect(
+    page.getByRole("link", { name: "View Details" }).first()
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Add Hotel" })).toBeVisible();
+});
 
 // test("should edit hotel", async ({ page }) => {
 //   await page.goto(`${UI_URL}my-hotels`);
