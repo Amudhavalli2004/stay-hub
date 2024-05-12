@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import Hotel from "../models/hotel";
  import { BookingType, HotelSearchResponse } from "../shared/types";
-// import { param, validationResult } from "express-validator";
+import { param, validationResult } from "express-validator";
 // import Stripe from "stripe";
 // import verifyToken from "../middleware/auth";
 
@@ -65,33 +65,33 @@ router.get("/search", async (req: Request, res: Response) => {
 //   }
 // });
 
-// router.get(
-//   "/:id",
-//   [param("id").notEmpty().withMessage("Hotel ID is required")],
-//   async (req: Request, res: Response) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(400).json({ errors: errors.array() });
-//     }
+router.get(
+  "/:id",
+  [param("id").notEmpty().withMessage("Hotel ID is required")],
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-//     const id = req.params.id.toString();
+    const id = req.params.id.toString();
 
-//     try {
-//       const hotel = await Hotel.findById(id);
-//       res.json(hotel);
-//     } catch (error) {
-//       console.log(error);
-//       res.status(500).json({ message: "Error fetching hotel" });
-//     }
-//   }
-// );
+    try {
+      const hotel = await Hotel.findById(id);
+      res.json(hotel);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Error fetching hotel" });
+    }
+  }
+);
 
-router.post(
-  "/",
+// router.post(
+  // "/",
   //   :hotelId/bookings/payment-intent
 
 //   verifyToken,
-  async (req: Request, res: Response) => {
+  // async (req: Request, res: Response) => {
     // const { numberOfNights } = req.body;
     // const hotelId = req.params.hotelId;
 
@@ -122,8 +122,8 @@ router.post(
     // };
 
     // res.send(response);
-  }
-);
+//   }
+// );
 
 // router.post(
 //   "/:hotelId/bookings",
