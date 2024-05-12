@@ -28,7 +28,7 @@ test("should allow user to add a hotel", async ({ page }) => {
   await page
     .locator('[name="description"]')
     .fill("This is a description for the Test Hotel");
-  await page.locator('[name="pricePerNight"]').fill("10000");
+  await page.locator('[name="pricePerNight"]').fill("15000");
   await page.selectOption('select[name="starRating"]', "3");
 
   await page.getByText("Budget").click();
@@ -69,22 +69,22 @@ test("should display hotels", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Add Hotel" })).toBeVisible();
 });
 
-// test("should edit hotel", async ({ page }) => {
-//   await page.goto(`${UI_URL}my-hotels`);
+test("should edit hotel", async ({ page }) => {
+  await page.goto(`${UI_URL}my-hotels`);
 
-//   await page.getByRole("link", { name: "View Details" }).first().click();
+  await page.getByRole("link", { name: "View Details" }).first().click();
 
-//   await page.waitForSelector('[name="name"]', { state: "attached" });
-//   await expect(page.locator('[name="name"]')).toHaveValue("Dublin Getaways");
-//   await page.locator('[name="name"]').fill("Dublin Getaways UPDATED");
-//   await page.getByRole("button", { name: "Save" }).click();
-//   await expect(page.getByText("Hotel Saved!")).toBeVisible();
+  await page.waitForSelector('[name="name"]', { state: "attached" });
+  await expect(page.locator('[name="name"]')).toHaveValue("Paradise Recidency");
+  await page.locator('[name="name"]').fill("Paradise Recidency Updated");
+  await page.getByRole("button", { name: "Save" }).click();
+  await expect(page.getByText("Hotel Saved!")).toBeVisible();
 
-//   await page.reload();
+  await page.reload();
 
-//   await expect(page.locator('[name="name"]')).toHaveValue(
-//     "Dublin Getaways UPDATED"
-//   );
-//   await page.locator('[name="name"]').fill("Dublin Getaways");
-//   await page.getByRole("button", { name: "Save" }).click();
-// });
+  await expect(page.locator('[name="name"]')).toHaveValue(
+    "Paradise Recidency Updated"
+  );
+  await page.locator('[name="name"]').fill("Paradise Recidency");
+  await page.getByRole("button", { name: "Save" }).click();
+});
