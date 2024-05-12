@@ -7,8 +7,9 @@ import {
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import AddHotel from "./pages/AddHotel";
 // import AddHotel from "./pages/AddHotel";
-// import { useAppContext } from "./contexts/AppContext";
+import { useAppContext } from "./contexts/AppContext";
 // import MyHotels from "./pages/MyHotels";
 // import EditHotel from "./pages/EditHotel";
 // import Search from "./pages/Search";
@@ -18,7 +19,7 @@ import SignIn from "./pages/SignIn";
 // import Home from "./pages/Home";
 
 const App = () => {
-  // const { isLoggedIn } = useAppContext();
+  const { isLoggedIn } = useAppContext();
   return (
     <Router>
       {/* <Routes>
@@ -130,6 +131,15 @@ const App = () => {
             </Layout>
           }
         />
+
+        {isLoggedIn && <>
+        <Route path="/add-hotel"
+        element={
+          <Layout>
+            <AddHotel/>
+          </Layout>
+        }/>
+        </>}
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
