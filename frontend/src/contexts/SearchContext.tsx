@@ -1,4 +1,4 @@
- import React, { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 
 type SearchContext = {
   destination: string;
@@ -16,13 +16,13 @@ type SearchContext = {
   ) => void;
 };
 
- const SearchContext = React.createContext<SearchContext | undefined>(undefined);
+const SearchContext = React.createContext<SearchContext | undefined>(undefined);
 
 type SearchContextProviderProps = {
   children: React.ReactNode;
 };
 
- export const SearchContextProvider = ({
+export const SearchContextProvider = ({
   children,
 }: SearchContextProviderProps) => {
   const [destination, setDestination] = useState<string>(

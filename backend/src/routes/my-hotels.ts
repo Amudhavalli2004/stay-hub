@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
- import multer from "multer";
- import cloudinary from "cloudinary";
+import multer from "multer";
+import cloudinary from "cloudinary";
 import Hotel from "../models/hotel";
 import verifyToken from "../middleware/auth";
 import { body } from "express-validator";
@@ -34,15 +34,13 @@ router.post(
       .isArray()
       .withMessage("Facilities are required"),
   ],
-upload.array("imageFiles", 6),
-
+  upload.array("imageFiles", 6),
   async (req: Request, res: Response) => {
     try {
       const imageFiles = req.files as Express.Multer.File[];
-    const newHotel: HotelType= req.body;
+      const newHotel: HotelType = req.body;
 
-    const imageUrls = await uploadImages(imageFiles);
-    
+      const imageUrls = await uploadImages(imageFiles);
 
       newHotel.imageUrls = imageUrls;
       newHotel.lastUpdated = new Date();
@@ -55,7 +53,7 @@ upload.array("imageFiles", 6),
     } catch (e) {
       console.log(e);
       res.status(500).json({ message: "Something went wrong" });
-     }
+    }
   }
 );
 
@@ -114,11 +112,10 @@ router.put(
       await hotel.save();
       res.status(201).json(hotel);
     } catch (error) {
-      res.status(500).json({ message: "Something went wrong" });
+      res.status(500).json({ message: "Something went throw" });
     }
   }
 );
-
 
 async function uploadImages(imageFiles: Express.Multer.File[]) {
   const uploadPromises = imageFiles.map(async (image) => {
@@ -133,4 +130,3 @@ async function uploadImages(imageFiles: Express.Multer.File[]) {
 }
 
 export default router;
-

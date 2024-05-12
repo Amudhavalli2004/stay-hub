@@ -5,7 +5,7 @@ import FacilitiesSection from "./FacilitiesSection";
 import GuestsSection from "./GuestsSection";
 import ImagesSection from "./ImagesSection";
 import { HotelType } from "../../../../backend/src/shared/types";
- import { useEffect } from "react";
+import { useEffect } from "react";
 
 export type HotelFormData = {
   name: string;
@@ -17,7 +17,7 @@ export type HotelFormData = {
   starRating: number;
   facilities: string[];
   imageFiles: FileList;
-   imageUrls: string[];
+  imageUrls: string[];
   adultCount: number;
   childCount: number;
 };
@@ -28,18 +28,15 @@ type Props = {
   isLoading: boolean;
 };
 
-const ManageHotelForm = (
-  { onSave, isLoading, hotel }: Props
-) => {
+const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
   const formMethods = useForm<HotelFormData>();
-   const { handleSubmit,reset} = formMethods;
+  const { handleSubmit, reset } = formMethods;
 
   useEffect(() => {
     reset(hotel);
   }, [hotel, reset]);
 
-   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
-    
+  const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     const formData = new FormData();
     if (hotel) {
       formData.append("hotelId", hotel._id);
@@ -72,25 +69,23 @@ const ManageHotelForm = (
   });
 
   return (
-     <FormProvider {...formMethods}>
-    <form className="flex flex-col gap-10" 
-     onSubmit={onSubmit}
-    >
-         <DetailsSection />
+    <FormProvider {...formMethods}>
+      <form className="flex flex-col gap-10" onSubmit={onSubmit}>
+        <DetailsSection />
         <TypeSection />
         <FacilitiesSection />
         <GuestsSection />
         <ImagesSection />
-         <span className="flex justify-end">
-          <button    
-           disabled={isLoading}
+        <span className="flex justify-end">
+          <button
+            disabled={isLoading}
             type="submit"
             className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl disabled:bg-gray-500"
-          > 
+          >
             {isLoading ? "Saving..." : "Save"}
-          </button> 
-        </span> 
-    </form>
+          </button>
+        </span>
+      </form>
     </FormProvider>
   );
 };
